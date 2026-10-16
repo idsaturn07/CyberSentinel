@@ -1,0 +1,11 @@
+file,size_gb,header_columns,matches_shared_schema,extra_columns,missing_columns,data_rows_read,repeated_header_rows,rows_after_header_removal,missing_values,nan_values,infinity_values,distinct_labels,decision,reason
+Friday-02-03-2018_TrafficForML_CICFlowMeter.csv,0.352,80,True,,,1048575,0,1048575,0,2558,5542,2,Included,Matches the shared 80-column schema
+Friday-16-02-2018_TrafficForML_CICFlowMeter.csv,0.334,80,True,,,1048575,1,1048574,0,0,0,3,Included,Matches the shared 80-column schema
+Friday-23-02-2018_TrafficForML_CICFlowMeter.csv,0.383,80,True,,,1048575,0,1048575,0,3754,7662,4,Included,Matches the shared 80-column schema
+Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv,4.055,84,False,Flow ID; Src IP; Src Port; Dst IP,,7948748,0,7948748,0,36767,82139,2,Excluded,Header does not match the shared schema
+Thursday-01-03-2018_TrafficForML_CICFlowMeter.csv,0.108,80,True,,,331125,25,331100,0,1834,4004,2,Included,Matches the shared 80-column schema
+Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv,0.376,80,True,,,1048575,0,1048575,0,4921,11133,3,Included,Matches the shared 80-column schema
+Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv,0.383,80,True,,,1048575,0,1048575,0,3569,7651,4,Included,Matches the shared 80-column schema
+Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv,0.358,80,True,,,1048575,0,1048575,0,2277,5371,3,Included,Matches the shared 80-column schema
+Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv,0.329,80,True,,,1048575,0,1048575,0,0,0,3,Included,Matches the shared 80-column schema
+Wednesday-28-02-2018_TrafficForML_CICFlowMeter.csv,0.209,80,True,,,613104,33,613071,0,4041,8297,2,Included,Matches the shared 80-column schema

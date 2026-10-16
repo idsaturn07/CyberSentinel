@@ -1,0 +1,18 @@
+{
+  "training_accuracy": 0.9767744514892863,
+  "test_accuracy": 0.9766391710245045,
+  "weighted_precision": 0.9768306630946029,
+  "weighted_recall": 0.9766391710245045,
+  "weighted_f1": 0.9763941459145984,
+  "cross_validation_accuracy": 0.9763006252024843,
+  "attack_precision": 0.9855308892367158,
+  "attack_recall": 0.9246669317270368,
+  "attack_f1": 0.9541292671069637,
+  "false_negative_rate": 0.07533306827296316,
+  "confusion_matrix": {
+    "TN": 1214992,
+    "FP": 5907,
+    "FN": 32779,
+    "TP": 402342
+  }
+}
