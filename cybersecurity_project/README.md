@@ -97,6 +97,7 @@ Prediction benchmark (single VM, 3 runs per size): 1,000,000 records in
 | Benign false-alarm rate: RF / hybrid 1 % / hybrid 0.1 % | 0.48 % / 1.47 % / 0.59 % |
 
 ![Detection of seen vs unseen attack families](plots/unseen_family_recall.png)
+| Dashboard demo: unseen DDoS-LOIC-HTTP flows from the excluded file (`demo_data/`) | 3 of 1,000 detected (0.3 %) |
 
 All of these numbers are stored in `results/` and `logs/` and can be
 regenerated with the steps below.
@@ -130,6 +131,7 @@ cybersecurity_project/
 ├── results/                        ← JSON / CSV results of every stage
 ├── plots/                          ← PNG figures
 ├── logs/                           ← console output of each stage (Step 9)
+├── demo_data/                      ← 3 small CSVs of unseen traffic to upload in the dashboard
 └── report/                         ← project report (PDF / DOCX)
 ```
 
@@ -325,7 +327,7 @@ ls ~/cybersecurity_project
 the folders:
 
 ```bash
-mkdir -p ~/cybersecurity_project/{scripts,data/CSE_CIC_IDS2018,models,results,plots,logs,report}
+mkdir -p ~/cybersecurity_project/{scripts,data/CSE_CIC_IDS2018,models,results,plots,logs,report,demo_data}
 cd ~/cybersecurity_project
 ```
 
@@ -3650,6 +3652,24 @@ persisted on disk to limit memory use. Outputs:
 > A held-out family in a public benchmark simulates an unseen attack type; it
 > is not evidence of real-world zero-day detection.
 
+**Demo data of unseen traffic (included in `demo_data/`)**
+
+The `demo_data/` folder holds three small CSV files for the dashboard. They
+are random flows (seed 42) taken from
+`Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv`, the file that was
+excluded from all training. Its attack type, **DDoS-LOIC-HTTP**, does not
+occur in the nine training files, so these flows are truly unseen: a new attack
+type recorded on a new day.
+
+| File | Contents |
+|---|---|
+| `unseen_attack_ddos_loic_http.csv` | 1,000 DDoS-LOIC-HTTP attack flows |
+| `unseen_day_benign.csv` | 1,000 benign flows from the same day |
+| `unseen_mixed.csv` | both together, shuffled (2,000 rows) |
+
+The files keep the extra columns of that file (Flow ID, IP addresses, Label);
+the dashboard ignores them.
+
 ### Step 10 — Save the results, plots and logs in HDFS too
 
 The scripts write the result files to the local project folder. To keep a copy
@@ -3695,16 +3715,27 @@ terminal. The sidebar has six pages:
 **Trying CSV Anomaly Detection.** HDFS must be running, because this page
 loads the model from HDFS. The uploaded CSV needs the 78 feature columns listed
 in `results/feature_columns.json` (extra columns such as `Timestamp` or `Label`
-are ignored). The easiest test file is a slice of one of the dataset CSVs:
+are ignored). Ready-made test files of **unseen** traffic are in `demo_data/`
+(see the end of Step 9):
+
+1. Upload `demo_data/unseen_attack_ddos_loic_http.csv`, set the row limit to at
+   least 1,000 and click **Run Anomaly Detection**. The share predicted
+   **Attack** is the detection rate for an attack type the model never saw. In
+   our run the model caught **3 of 1,000 (0.3 %)**, which matches the
+   unseen-family results of Stage 8: a supervised model is almost blind to a
+   new attack type.
+2. Upload `demo_data/unseen_day_benign.csv` and run again. The share predicted
+   **Attack** is the false-alarm rate on normal traffic from a new day.
+3. Optionally upload `demo_data/unseen_mixed.csv` (2,000 rows) as a realistic
+   mixed file.
+
+Use **Download ALL prediction results** to save the predictions. Any slice of a
+dataset CSV also works, for example:
 
 ```bash
 head -n 5001 ~/cybersecurity_project/data/CSE_CIC_IDS2018/Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv \
   > ~/sample_5000_flows.csv
 ```
-
-Upload `~/sample_5000_flows.csv`, choose the row limit with the slider, click
-**Run Anomaly Detection**, and use **Download ALL prediction results** to save
-the predictions.
 
 ### Step 12 — Verify everything
 
@@ -3889,6 +3920,7 @@ data in HDFS, i.e. Step 7 and Stage 1.
 | `plots/confusion_matrix.png`, `plots/feature_importance.png`, `plots/scalability_*.png` | generate_plots.py | Report / dashboard figures |
 | `results/attack_family_counts.csv`, `results/unseen_attack_results.csv`, `results/unseen_attack_summary.json`, `plots/unseen_family_recall.png` | unseen_attack_experiment.py | Known vs unseen attack-family results |
 | `logs/*.log` | Step 9 (`nohup … > ../logs/…`) | Console output of each stage |
+| `demo_data/*.csv` | sampled from the excluded Tuesday file | Unseen DDoS-LOIC-HTTP, benign and mixed flows for the dashboard |
 
 HDFS locations: see the layout in [Section 7](#7-hdfs-commands-reference).
 
