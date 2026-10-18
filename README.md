@@ -109,7 +109,7 @@ regenerated with the steps below.
 ## 2. Project structure
 
 ```
-cybersecurity_project/
+cybersentinel/
 ├── README.md                       ← this file
 ├── requirements.txt                ← Python packages
 ├── .gitignore                      ← keeps the dataset out of Git
