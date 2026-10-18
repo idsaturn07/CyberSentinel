@@ -1,0 +1,19 @@
+{
+  "files_audited": 10,
+  "files_included": 9,
+  "files_excluded": [
+    "Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv"
+  ],
+  "all_files_rows_read": 16233002,
+  "included_rows_read": 8284254,
+  "included_repeated_header_rows": 59,
+  "included_rows_after_header_removal": 8284195,
+  "included_missing_values": 0,
+  "included_nan_values": 22954,
+  "included_infinity_values": 49660,
+  "features_with_invalid_values": [
+    "Flow Byts/s",
+    "Flow Pkts/s"
+  ],
+  "shared_schema_columns": 80
+}

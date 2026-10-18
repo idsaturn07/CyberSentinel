@@ -1,0 +1,9 @@
+# Python packages for CyberSentinel
+# Tested combination: Python 3.12, Java 17, Hadoop 3.3.6.
+# pyspark must match the Spark version that saved the model (4.2.0).
+pyspark==4.2.0
+pandas>=2.0,<3.0
+numpy>=1.26
+matplotlib>=3.8
+streamlit>=1.36
+pyarrow>=14.0

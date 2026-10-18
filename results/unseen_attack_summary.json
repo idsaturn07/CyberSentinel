@@ -1,0 +1,29 @@
+{
+  "split": {
+    "train_pool": 0.7,
+    "benign_calibration": 0.1,
+    "test": 0.2,
+    "seed": 42
+  },
+  "train_cap_rows": 1000000,
+  "kmeans": {
+    "k": 10,
+    "benign_training_cap": 200000,
+    "benign_calibration_rows": 611462
+  },
+  "anomaly_thresholds": {
+    "p99": 328.81817191403553,
+    "p99.9": 1711.322588951498
+  },
+  "test_benign_rows": 1220899,
+  "families_held_out": [
+    "Bot",
+    "Brute-force",
+    "DDoS",
+    "DoS",
+    "Infiltration",
+    "Web"
+  ],
+  "families_not_held_out": [],
+  "runtime_minutes": 31.9
+}

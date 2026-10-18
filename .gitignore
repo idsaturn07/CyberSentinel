@@ -1,0 +1,3 @@
+data/CSE_CIC_IDS2018/*.csv
+__pycache__/
+*.pyc
